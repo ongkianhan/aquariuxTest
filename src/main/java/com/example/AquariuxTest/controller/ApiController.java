@@ -1,7 +1,10 @@
 package com.example.AquariuxTest.controller;
 
+
+import com.example.AquariuxTest.Entity.Ticker;
 import com.example.AquariuxTest.Entity.Transaction;
 import com.example.AquariuxTest.Entity.Wallet;
+import com.example.AquariuxTest.Repositories.TickerRepo;
 import com.example.AquariuxTest.Repositories.TransactionRepo;
 import com.example.AquariuxTest.Repositories.WalletCurrencyRepo;
 import com.example.AquariuxTest.Repositories.WalletRepo;
@@ -31,6 +34,9 @@ public class ApiController {
     @Autowired
     private WalletRepo walletRepo;
 
+    @Autowired
+    private TickerRepo tickerRepo;
+
     @GetMapping("/getTxnHistory")
     public ResponseEntity<Object> getTxnHistoryByUserId(@RequestParam Long id) {
         try {
@@ -45,7 +51,6 @@ public class ApiController {
     @GetMapping("/getWallet")
     public ResponseEntity<Object> getWalletByUserId(@RequestParam Long id) {
         try {
-
             Optional<Wallet> wallet = walletRepo.findById(id);
             return ResponseEntity.ok().body(wallet);
         } catch (Exception e) {
@@ -53,6 +58,32 @@ public class ApiController {
         }
 
     }
+
+    @GetMapping("/getBestPrice")
+    public ResponseEntity<Object> retrieveBestPrice() {
+        try {
+            List<Ticker> tickerList = new ArrayList<>();
+            Optional<Ticker> eth = tickerRepo.findById("ETHUSDT");
+            Optional<Ticker> btc = tickerRepo.findById("BTCUSDT");
+            if (eth.isPresent()) {
+                Ticker ethRec = eth.get();
+                tickerList.add(ethRec);
+            }
+
+            if (btc.isPresent()) {
+                Ticker btcRec = btc.get();
+                tickerList.add(btcRec);
+            }
+
+            return ResponseEntity.ok(tickerList);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+
 
 
 }

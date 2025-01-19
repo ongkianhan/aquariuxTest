@@ -1,19 +1,15 @@
-package com.example.AquariuxTest.Entity;
+package com.example.AquariuxTest.Response;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
 @Setter
-@Entity
-@Table(name="ticker")
-public class Ticker implements Serializable {
-    @Id
+public class BinanceResponse implements Serializable {
+    @JsonProperty("symbol")
     private String symbol;
     private BigDecimal bidPrice;
     private BigDecimal bidQty;

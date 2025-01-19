@@ -8,14 +8,17 @@ INSERT INTO transactions (user_id, txn_id, ticker, txn_time, txn_volume, txn_pri
 (1, 2001, 'BTCUSDT', '2025-01-02 09:45:00', 100, 310.10, 31010.00, 'B');
 
 
--- Insert sample data into wallet table
 INSERT INTO wallet (user_id) VALUES (1);
 INSERT INTO wallet (user_id) VALUES (2);
 
--- Insert sample data into wallet_curr table, assuming wallet_id 1 and 2 from above inserts
 INSERT INTO wallet_curr (ticker, wallet_id, volume)
 VALUES ('BTCUSDT', 1, 1.5),
        ('ETHUSDT', 1, 10.0),
        ('BTCUSDT', 2, 0.5),
        ('ETHUSDT', 2, 7.5),
        ('USDT', 1, 50000);
+
+
+INSERT INTO ticker (symbol, bidPrice, bidQty, askPrice, askQty) VALUES
+('BTCUSD', 45000.55, 0.25, 45010.00, 0.50),
+('ETHUSD', 3000.25, 1.0, 3005.75, 1.5);

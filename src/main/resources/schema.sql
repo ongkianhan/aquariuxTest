@@ -30,3 +30,12 @@ CREATE TABLE wallet_curr (
     volume DECIMAL(15, 2) NOT NULL,
     FOREIGN KEY (wallet_id) REFERENCES wallet(wallet_id)
 );
+
+
+CREATE TABLE ticker (
+    symbol VARCHAR(255) PRIMARY KEY,
+    bidPrice DECIMAL(19, 4),
+    bidQty DECIMAL(19, 4),
+    askPrice DECIMAL(19, 4),
+    askQty DECIMAL(19, 4)
+);
