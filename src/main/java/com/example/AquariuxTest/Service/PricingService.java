@@ -43,12 +43,16 @@ public class PricingService {
                 null,
                 new ParameterizedTypeReference<>() {
                 });
-
-        for (BinanceResponse ticker : response.getBody()) {
-            if (ticker.getSymbol().equals(ETH_TICKER) || ticker.getSymbol().equals(BTC_TICKER)) {
-                storeBestPricing(ticker.getSymbol(), ticker.getBidPrice(), ticker.getBidQty(), ticker.getAskPrice(), ticker.getAskQty());
+        if (response.getBody() != null) {
+            for (BinanceResponse ticker : response.getBody()) {
+                if (ticker.getSymbol().equals(ETH_TICKER) || ticker.getSymbol().equals(BTC_TICKER)) {
+                    storeBestPricing(ticker.getSymbol(), ticker.getBidPrice(), ticker.getBidQty(), ticker.getAskPrice(), ticker.getAskQty());
+                }
             }
+        } else {
+            log.info("Null retrieved from binance api url. Please check to confirm.");
         }
+
     }
 
     public void storeBestPricing(String symbol, BigDecimal bidPrice, BigDecimal bidQty, BigDecimal askPrice, BigDecimal askQty) {
@@ -87,12 +91,17 @@ public class PricingService {
                 HttpMethod.GET,
                 null,
                 HuobiFullResponse.class);
-
-        for (HuobiResponse ticker : response.getBody().getData()) {
-            if (ticker.getSymbol().equals(ETH_TICKER) || ticker.getSymbol().equals(BTC_TICKER)) {
-                storeBestPricing(ticker.getSymbol(), ticker.getBid(), ticker.getBidSize(), ticker.getAsk(), ticker.getAskSize());
+        if (response.getBody() != null && response.getBody().getData() != null) {
+            for (HuobiResponse ticker : response.getBody().getData()) {
+                if (ticker.getSymbol().equals(ETH_TICKER) || ticker.getSymbol().equals(BTC_TICKER)) {
+                    storeBestPricing(ticker.getSymbol(), ticker.getBid(), ticker.getBidSize(), ticker.getAsk(), ticker.getAskSize());
+                }
             }
+        } else {
+            log.info("Null retrieved from huobi api url. Please check to confirm.");
+
         }
+
     }
 
 }
