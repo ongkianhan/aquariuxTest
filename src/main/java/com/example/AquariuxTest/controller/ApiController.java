@@ -2,7 +2,6 @@ package com.example.AquariuxTest.controller;
 
 import com.example.AquariuxTest.Entity.Transaction;
 import com.example.AquariuxTest.Entity.Wallet;
-import com.example.AquariuxTest.Entity.WalletCurr;
 import com.example.AquariuxTest.Repositories.TransactionRepo;
 import com.example.AquariuxTest.Repositories.WalletCurrencyRepo;
 import com.example.AquariuxTest.Repositories.WalletRepo;
