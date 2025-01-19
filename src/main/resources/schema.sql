@@ -24,11 +24,12 @@ CREATE TABLE wallet (
 
 
 CREATE TABLE wallet_curr (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    ticker VARCHAR(255) NOT NULL,
-    wallet_id BIGINT NOT NULL,
-    volume DECIMAL(15, 2) NOT NULL,
-    FOREIGN KEY (wallet_id) REFERENCES wallet(wallet_id)
+    id BIGINT AUTO_INCREMENT,
+    ticker VARCHAR(255),
+    wallet_id BIGINT,
+    volume DECIMAL(19, 4),
+    PRIMARY KEY (id, ticker),
+    CONSTRAINT fk_wallet FOREIGN KEY (wallet_id) REFERENCES wallet(wallet_id)
 );
 
 

@@ -101,7 +101,6 @@ public class PricingService {
             log.info("Null retrieved from huobi api url. Please check to confirm.");
 
         }
-
     }
 
 }

@@ -16,7 +16,7 @@ VALUES ('BTCUSDT', 1, 1.5),
        ('ETHUSDT', 1, 10.0),
        ('BTCUSDT', 2, 0.5),
        ('ETHUSDT', 2, 7.5),
-       ('USDT', 1, 50000);
+       ('USDT', 1, 50000.00);
 
 
 INSERT INTO ticker (symbol, bidPrice, bidQty, askPrice, askQty) VALUES

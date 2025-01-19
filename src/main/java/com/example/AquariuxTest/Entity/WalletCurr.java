@@ -3,7 +3,9 @@ package com.example.AquariuxTest.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -14,14 +16,16 @@ import java.math.BigDecimal;
 @Setter
 @Table(name="walletCurr")
 @IdClass(WalletCurrPK.class)
+@NoArgsConstructor
+@AllArgsConstructor
 public class WalletCurr implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("walletCurrencyId")
+    @JsonProperty("id")
     private Long id;
     @Id
     @JsonProperty("ticker")
-    String ticker;
+    private String ticker;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
